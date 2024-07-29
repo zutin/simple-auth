@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  postgres:
+    container_name: sa-db
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: simpleauth_test
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'

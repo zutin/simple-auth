@@ -4,7 +4,7 @@ ruby '3.3.3'
 gem 'rails', '~> 7.1.3', '>= 7.1.3.4'
 
 gem 'bootsnap', require: false
-gem 'mysql2', '~> 0.5'
+gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
 gem 'rack-cors'
 gem 'tzinfo-data', platforms: [:windows, :jruby]
