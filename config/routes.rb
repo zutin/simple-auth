@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  mount_devise_token_auth_for 'Employee', at: 'auth', skip: [:registrations, :sessions]
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  as :employee do
+    post 'auth/sign_in' => 'devise_token_auth/sessions#create'
+    delete 'auth/sign_out' => 'devise_token_auth/sessions#destroy'
+    post 'auth/sign_up' => 'devise_token_auth/registrations#create'
+  end
+
+  resources :employees, only: [:index]
+
   get "up" => "rails/health#show", as: :rails_health_check
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end

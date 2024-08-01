@@ -4,7 +4,6 @@ SimpleCov.start 'rails' do
   add_filter 'channels'
   add_filter 'mailers'
 end
-Rails.application.eager_load!
 
 require 'spec_helper'
 require 'capybara/rspec'
@@ -15,6 +14,8 @@ require_relative '../config/environment'
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+
+Rails.root.glob('spec/support/**/*.rb').sort.each { |f| require f }
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
